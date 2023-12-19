@@ -331,13 +331,12 @@ The first approach is what is recommended in the SX127X datasheet, and the secon
 | Type | Directive | Description |
 | ------------- | ------------- | ------------- |
 | Debug | DEMOD_DEBUG        | enable verbose debugging of signal processing |
-| Debug | DEVICE_DEBUG       | Validate fields are mapped to response object ( rtl_433 ) |
 | Debug | MEMORY_DEBUG       | display heap usage information |
 | Debug | RESOURCE_DEBUG     | Monitor HEAP and STACK usage and report large jumps |
 | Signal | RAW_SIGNAL_DEBUG   | display raw received messages
 | Signal | PUBLISH_UNPARSED   | Enable publishing of MQTT messages for unparsed signals, e.g. {model":"unknown","protocol":"signal parsing failed"…
 | Signal | SIGNAL_RSSI        | Enable collection of per pulse RSSI Values during signal reception for display in signal debug messages
-| DEVICES | MY_DEVICES         | Only include a subset of devices |
+| Decoders | MY_DEVICES         | Only include a subset of devices |
 | Receiver | RSSI_SAMPLES       | Number of rssi samples to collect for average calculation, defaults to 50,000
 | Receiver | RSSI_THRESHOLD     | Delta applied to average RSSI value to calculate RSSI Signal Threshold, defaults to 9
 | Receiver | DISABLERSSITHRESHOLD | Disable automatic setting of RSSI_THRESHOLD ( legacy behaviour ), and use MINRSSI ( -82 )
@@ -347,6 +346,7 @@ The first approach is what is recommended in the SX127X datasheet, and the secon
 | Analysis | RTL_ANALYZER       | Enable pulse stream analysis ( note is very resource intensive and will not work with other modules )
 | Analysis | RTL_ANALYZE=##     | Enable pulse stream analysis for decoder ##
 | Modulation | OOK_MODULATION     | Enable OOK Device Decoders, setting to false enables FSK Device Decoders
+| Other | DEVICE_DEBUG       | Validate fields are mapped to response object ( rtl_433 ), used during code base refresh |
 
 # Module Wiring
 | Type | Directive | Description |
@@ -362,7 +362,7 @@ The first approach is what is recommended in the SX127X datasheet, and the secon
 | | RF_MODULE_RST         | SX1276 RST PIN
 | | RF_MODULE_DIO1        | SX1276 DIO1 PIN
 | SX1278 Module Options |
-| | RF_SX1278 - Enable support for SX1276
+| | RF_SX1278             | Enable support for SX1276
 | | OOK_FIXED_THRESHOLD   | Initial OOK threshold ( See 2.1.3.2. of datasheet ), defaults to 90
 | | AUTOOOKFIX            | Set to enable automatic setting of OOK_FIXED_THRESHOLD based on noise level between signals
 | SX1278 Module Wiring ( Required if not using standard configuration ) |
