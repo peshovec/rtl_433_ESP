@@ -329,7 +329,7 @@ The first approach is what is recommended in the SX127X datasheet, and the secon
 # Compiler definition options
 
 | Type | Directive | Description |
-| ------------- | ------------- |
+| ------------- | ------------- | ------------- |
 | | DEMOD_DEBUG        | enable verbose debugging of signal processing |
 | | DEVICE_DEBUG       | Validate fields are mapped to response object ( rtl_433 ) |
 | | MEMORY_DEBUG       | display heap usage information |
@@ -347,8 +347,10 @@ The first approach is what is recommended in the SX127X datasheet, and the secon
 | | SIGNAL_RSSI        | Enable collection of per pulse RSSI Values during signal reception for display in signal debug messages
 | | RF_MODULE_INIT_STATUS | Display transceiver config during startup
 | | DISABLERSSITHRESHOLD | Disable automatic setting of RSSI_THRESHOLD ( legacy behaviour ), and use MINRSSI ( -82 )
-| | OOK_MODULATION     | Enable OOK Device Decoders, setting to false enables FSK Device Decoders 
-| Module Wiring |
+| | OOK_MODULATION     | Enable OOK Device Decoders, setting to false enables FSK Device Decoders
+
+| Module Wiring | | |
+| ------------- | ------------- | ------------- |
 | | ONBOARD_LED           | GPIO pin to toggle during signal reception ( Typically onboard LED )
 | SX1276 Module Options |
 | | RF_SX1276             | Enable support for SX1276 Transceiver
