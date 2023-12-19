@@ -330,26 +330,26 @@ The first approach is what is recommended in the SX127X datasheet, and the secon
 
 | Type | Directive | Description |
 | ------------- | ------------- | ------------- |
-| | DEMOD_DEBUG        | enable verbose debugging of signal processing |
-| | DEVICE_DEBUG       | Validate fields are mapped to response object ( rtl_433 ) |
-| | MEMORY_DEBUG       | display heap usage information |
-| | RESOURCE_DEBUG     | Monitor HEAP and STACK usage and report large jumps |
-| | MY_DEVICES         | Only include a subset of devices |
-| | NO_DEAF_WORKAROUND | Workaround for issue #16 ( by default the workaround is enabaled )
-| | PUBLISH_UNPARSED   | Enable publishing of MQTT messages for unparsed signals, e.g. {model":"unknown","protocol":"signal parsing failed"…
-| | RAW_SIGNAL_DEBUG   | display raw received messages
-| | RSSI_SAMPLES       | Number of rssi samples to collect for average calculation, defaults to 50,000
-| | RSSI_THRESHOLD     | Delta applied to average RSSI value to calculate RSSI Signal Threshold, defaults to 9
-| | RTL_DEBUG          | Enable RTL_433 device decoder verbose mode for all device decoders ( 0=normal, 1=verbose, 2=verbose decoders, 3=debug decoders, 4=trace decoding. )
-| | RTL_VERBOSE=##     | Enable RTL_433 device decoder verbose mode, ## is the decoder # from the appropriate memcpy line in signalDecoder.cpp
-| | RTL_ANALYZER       | Enable pulse stream analysis ( note is very resource intensive and will not work with other modules )
-| | RTL_ANALYZE=##     | Enable pulse stream analysis for decoder ##
-| | SIGNAL_RSSI        | Enable collection of per pulse RSSI Values during signal reception for display in signal debug messages
-| | RF_MODULE_INIT_STATUS | Display transceiver config during startup
-| | DISABLERSSITHRESHOLD | Disable automatic setting of RSSI_THRESHOLD ( legacy behaviour ), and use MINRSSI ( -82 )
-| | OOK_MODULATION     | Enable OOK Device Decoders, setting to false enables FSK Device Decoders
+| Debug | DEMOD_DEBUG        | enable verbose debugging of signal processing |
+| Debug | DEVICE_DEBUG       | Validate fields are mapped to response object ( rtl_433 ) |
+| Debug | MEMORY_DEBUG       | display heap usage information |
+| Debug | RESOURCE_DEBUG     | Monitor HEAP and STACK usage and report large jumps |
+| Signal | RAW_SIGNAL_DEBUG   | display raw received messages
+| Signal | PUBLISH_UNPARSED   | Enable publishing of MQTT messages for unparsed signals, e.g. {model":"unknown","protocol":"signal parsing failed"…
+| Signal | SIGNAL_RSSI        | Enable collection of per pulse RSSI Values during signal reception for display in signal debug messages
+| DEVICES | MY_DEVICES         | Only include a subset of devices |
+| Receiver | RSSI_SAMPLES       | Number of rssi samples to collect for average calculation, defaults to 50,000
+| Receiver | RSSI_THRESHOLD     | Delta applied to average RSSI value to calculate RSSI Signal Threshold, defaults to 9
+| Receiver | DISABLERSSITHRESHOLD | Disable automatic setting of RSSI_THRESHOLD ( legacy behaviour ), and use MINRSSI ( -82 )
+| Receiver | RF_MODULE_INIT_STATUS | Display transceiver config during startup
+| Analysis| RTL_DEBUG          | Enable RTL_433 device decoder verbose mode for all device decoders ( 0=normal, 1=verbose, 2=verbose decoders, 3=debug decoders, 4=trace decoding. )
+| Analysis | RTL_VERBOSE=##     | Enable RTL_433 device decoder verbose mode, ## is the decoder # from the appropriate memcpy line in signalDecoder.cpp
+| Analysis | RTL_ANALYZER       | Enable pulse stream analysis ( note is very resource intensive and will not work with other modules )
+| Analysis | RTL_ANALYZE=##     | Enable pulse stream analysis for decoder ##
+| Modulation | OOK_MODULATION     | Enable OOK Device Decoders, setting to false enables FSK Device Decoders
 
-| Module Wiring | | |
+# Module Wiring
+| Type | Directive | Description |
 | ------------- | ------------- | ------------- |
 | | ONBOARD_LED           | GPIO pin to toggle during signal reception ( Typically onboard LED )
 | SX1276 Module Options |
