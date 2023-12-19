@@ -326,96 +326,63 @@ To tune the SX127X OOK RSSI FIXED Threshold two values are used to determine if 
 
 The first approach is what is recommended in the SX127X datasheet, and the second is a control to lower the threshold if it is too high and incomplete signals are received.
 
-# Compile definition options
+# Compiler definition options
 
-```plaintext
-DEMOD_DEBUG           ; enable verbose debugging of signal processing
-DEVICE_DEBUG          ; Validate fields are mapped to response object ( rtl_433 )
-MEMORY_DEBUG          ; display heap usage information
-RESOURCE_DEBUG        : Monitor HEAP and STACK usage and report large jumps
-MY_DEVICES            ; Only include my personal subset of devices
-NO_DEAF_WORKAROUND    ; Workaround for issue #16 ( by default the workaround is enabaled )
-PUBLISH_UNPARSED      ; Enable publishing of MQTT messages for unparsed signals, e.g. {model":"unknown","protocol":"signal parsing failed"…
-RAW_SIGNAL_DEBUG      ; display raw received messages
-RSSI_SAMPLES          ; Number of rssi samples to collect for average calculation, defaults to 50,000
-RSSI_THRESHOLD        ; Delta applied to average RSSI value to calculate RSSI Signal Threshold, defaults to 9
-RTL_DEBUG             ; Enable RTL_433 device decoder verbose mode for all device decoders ( 0=normal, 1=verbose, 2=verbose decoders, 3=debug decoders, 4=trace decoding. )
-RTL_VERBOSE=##        ; Enable RTL_433 device decoder verbose mode, ## is the decoder # from the appropriate memcpy line in signalDecoder.cpp
-RTL_ANALYZER          ; Enable pulse stream analysis ( note is very resource intensive and will not work with other modules )
-RTL_ANALYZE=##        ; Enable pulse stream analysis for decoder ##
-SIGNAL_RSSI           ; Enable collection of per pulse RSSI Values during signal reception for display in signal debug messages
-RF_MODULE_INIT_STATUS ; Display transceiver config during startup
-DISABLERSSITHRESHOLD  ; Disable automatic setting of RSSI_THRESHOLD ( legacy behaviour ), and use MINRSSI ( -82 )
-OOK_MODULATION        ; Enable OOK Device Decoders, setting to false enables FSK Device Decoders 
-```
+| Type | Directive | Description |
+| ------------- | ------------- |
+| | DEMOD_DEBUG        | enable verbose debugging of signal processing |
+| | DEVICE_DEBUG       | Validate fields are mapped to response object ( rtl_433 ) |
+| | MEMORY_DEBUG       | display heap usage information |
+| | RESOURCE_DEBUG     | Monitor HEAP and STACK usage and report large jumps |
+| | MY_DEVICES         | Only include a subset of devices |
+| | NO_DEAF_WORKAROUND | Workaround for issue #16 ( by default the workaround is enabaled )
+| | PUBLISH_UNPARSED   | Enable publishing of MQTT messages for unparsed signals, e.g. {model":"unknown","protocol":"signal parsing failed"…
+| | RAW_SIGNAL_DEBUG   | display raw received messages
+| | RSSI_SAMPLES       | Number of rssi samples to collect for average calculation, defaults to 50,000
+| | RSSI_THRESHOLD     | Delta applied to average RSSI value to calculate RSSI Signal Threshold, defaults to 9
+| | RTL_DEBUG          | Enable RTL_433 device decoder verbose mode for all device decoders ( 0=normal, 1=verbose, 2=verbose decoders, 3=debug decoders, 4=trace decoding. )
+| | RTL_VERBOSE=##     | Enable RTL_433 device decoder verbose mode, ## is the decoder # from the appropriate memcpy line in signalDecoder.cpp
+| | RTL_ANALYZER       | Enable pulse stream analysis ( note is very resource intensive and will not work with other modules )
+| | RTL_ANALYZE=##     | Enable pulse stream analysis for decoder ##
+| | SIGNAL_RSSI        | Enable collection of per pulse RSSI Values during signal reception for display in signal debug messages
+| | RF_MODULE_INIT_STATUS | Display transceiver config during startup
+| | DISABLERSSITHRESHOLD | Disable automatic setting of RSSI_THRESHOLD ( legacy behaviour ), and use MINRSSI ( -82 )
+| | OOK_MODULATION     | Enable OOK Device Decoders, setting to false enables FSK Device Decoders 
+| Module Wiring |
+| | ONBOARD_LED           | GPIO pin to toggle during signal reception ( Typically onboard LED )
+| SX1276 Module Options |
+| | RF_SX1276             | Enable support for SX1276 Transceiver
+| | OOK_FIXED_THRESHOLD   | Initial OOK threshold ( See 2.1.3.2. of datasheet ), defaults to 90
+| | AUTOOOKFIX            | Set to enable automatic setting of OOK_FIXED_THRESHOLD based on noise level between signals
+| SX1276 Module Wiring ( Required if not using standard configuration ) |
+| | RF_MODULE_CS          | SX1276 SPI Chip select
+| | RF_MODULE_DIO0        | SX1276 DIO0 PIN
+| | RF_MODULE_RST         | SX1276 RST PIN
+| | RF_MODULE_DIO1        | SX1276 DIO1 PIN
+| SX1278 Module Options |
+| | RF_SX1278 - Enable support for SX1276
+| | OOK_FIXED_THRESHOLD   | Initial OOK threshold ( See 2.1.3.2. of datasheet ), defaults to 90
+| | AUTOOOKFIX            | Set to enable automatic setting of OOK_FIXED_THRESHOLD based on noise level between signals
+| SX1278 Module Wiring ( Required if not using standard configuration ) |
+| | RF_MODULE_CS          | SX1278 SPI Chip select
+| | RF_MODULE_DIO0        | SX1278 DIO0 PIN
+| | RF_MODULE_RST         | SX1278 RST PIN
+| | RF_MODULE_DIO1        | SX1278 DIO1 PIN
+| CC1101 Module Options |
+| | RF_CC1101             | Enable support for CC1101 Transceiver
+| | NO_DEAF_WORKAROUND    | Workaround for issue #16 ( by default the workaround is enabaled )
+| CC1101 Module Wiring |
+| | RF_MODULE_CS          | CC1101 SPI Chip select
+| | RF_MODULE_GDO0        | CC1101 GDOO PIN
+| | RF_MODULE_GDO2        | CC1101 GDO2 PIN
+| RF Module SPI Wiring ( Required if not using standard configuration ) || When using a non standard SPI configuration ( Standard config is SCK - 18, MISO - 19, MOSI - 23, CS - 5)
+| | RF_MODULE_SCK         | SPI Clock
+| | RF_MODULE_MISO        | SPI Serial Output
+| | RF_MODULE_MOSI        | SPI Serial Input
+| | RF_MODULE_CS          | SPI Chip select
 
-## RF Module Wiring
 
-```plaintext
-ONBOARD_LED           ; GPIO pin to toggle during signal reception ( Typically onboard LED )
-```
-
-### SX1276 Module Options
-
-```plaintext
-RF_SX1276             ; Enable support for SX1276 Transceiver
-OOK_FIXED_THRESHOLD   ; Initial OOK threshold ( See 2.1.3.2. of datasheet ), defaults to 90
-AUTOOOKFIX            ; Set to enable automatic setting of OOK_FIXED_THRESHOLD based on noise level between signals
-```
-
-### SX1276 Module Wiring ( Required if not using standard configuration )
-
-```plaintext
-RF_MODULE_CS          ; SX1276 SPI Chip select
-RF_MODULE_DIO0        ; SX1276 DIO0 PIN
-RF_MODULE_RST         ; SX1276 RST PIN
-RF_MODULE_DIO1        ; SX1276 DIO1 PIN
-```
-
-### SX1278 Module Options
-
-```plaintext
-RF_SX1278 - Enable support for SX1276
-OOK_FIXED_THRESHOLD   ; Initial OOK threshold ( See 2.1.3.2. of datasheet ), defaults to 90
-AUTOOOKFIX            ; Set to enable automatic setting of OOK_FIXED_THRESHOLD based on noise level between signals
-```
-
-### SX1278 Module Wiring ( Required if not using standard configuration )
-
-```plaintext
-RF_MODULE_CS          ; SX1278 SPI Chip select
-RF_MODULE_DIO0        ; SX1278 DIO0 PIN
-RF_MODULE_RST         ; SX1278 RST PIN
-RF_MODULE_DIO1        ; SX1278 DIO1 PIN
-```
-
-### CC1101 Module Options
-
-```plaintext
-RF_CC1101             ; Enable support for CC1101 Transceiver
-NO_DEAF_WORKAROUND    ; Workaround for issue #16 ( by default the workaround is enabaled )
-```
-
-### CC1101 Module Wiring
-
-```plaintext
-RF_MODULE_CS          ; CC1101 SPI Chip select
-RF_MODULE_GDO0        ; CC1101 GDOO PIN
-RF_MODULE_GDO2        ; CC1101 GDO2 PIN
-```
-
-## RF Module SPI Wiring ( Required if not using standard configuration )
-
-When using a non standard SPI configuration ( Standard config is SCK - 18, MISO - 19, MOSI - 23, CS - 5)
-
-```plaintext
-RF_MODULE_SCK         ; SPI Clock
-RF_MODULE_MISO        ; SPI Serial Output
-RF_MODULE_MOSI        ; SPI Serial Input
-RF_MODULE_CS          ; SPI Chip select
-```
-
-## Porting approach
+# Porting approach
 
 Copying src files
 
