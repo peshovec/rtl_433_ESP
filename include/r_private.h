@@ -49,7 +49,7 @@ struct dm_state {
     int analyze_pulses;
     file_info_t load_info;
     list_t dumper;
-    */
+
     /* Protocol states */
     list_t r_devs;
 
